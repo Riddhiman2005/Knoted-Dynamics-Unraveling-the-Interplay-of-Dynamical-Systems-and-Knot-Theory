@@ -1,0 +1,206 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+
+\section{Introduction and background}
+
+
+
+This paper is heavily based on \textbf{Robert Ghrist}'s and \textbf{Robert Holmes}' \emph{An ODE whose solutions contain all knots and links}~\cite{knottyode}.
+
+In that manuscript, Ghrist gives an excellent high-level exposition of proof that an ODE containing
+all knots and links as periodic orbits exists, building heavily off of his existing work in this area. It's challenging to avoid getting distracted by the abundance of captivating side notes in his manuscript, as the link between knot theory and dynamical systems is incredibly fruitful.
+
+Rather than pointlessly recapitulate what Ghrist has already stated so elegantly, we seek to give a more compact and (mostly) self-contained exposition of the beautiful proof that the required ODE exists. I'll request the readers to refer to Ghrist's review papers \cite{knottyode}\cite{chaoticknots} to see many interesting footnotes and connections that will not make it into this paper.
+
+We will inevitably be unable to resist the temptation to discuss at least a few interesting connections and questions. The last section for discussion of those distractions that most fascinate the authors during the writing.
+
+As briefly stated above, our ultimate goal is to \textbf{prove the existence of a universal ODE, an ODE whose periodic solutions contain all knots and links}.
+
+
+\subsection{Templates}
+
+The story begins with \emph{templates}, a beautiful and very powerful construction. Proving the existence of a universal ordinary differential equation (ODE) solely through working with ODEs directly would be extremely challenging. Therefore, adhering to one of the fundamental principles of mathematics, we simplify by collapsing similar elements and acquiring a new entity. In this particular scenario, we collapse along the stable direction of a specific ODE, combining all trajectories that share the same asymptotic future  behavior.
+This transforms a flow on a three-dimensional manifold into a flow to a semiflow (a one directional flow) on a branched two-dimensional manifold.
+
+I'll not discuss the intricacies of this construction see \cite{bw1983b}.
+
+
+\begin{definition}[Template]
+  A \emph{template} is a compact branched two-manifold fitted with a smooth expansive semiflow and built from a finite number of \emph{joining} and \emph{splitting} charts, Figure~\ref{fig:joinsplit}~\cite{knottyode}.\label{def:template}
+\end{definition}
+
+Figure~\ref{fig:lorenz} shows the template for the familiar Lorenz system, the canonical chaotic system, described in equations\ref{eq:lorenz}-\ref{eq:lorenz3}. The simplicity of the Lorenz template is a testament to the elegance of
+templates - the Lorenz template exactly captures the repeated expanding and folding over of orbits that is the signature of chaos. Even though for certain parameter values, periodic solutions to these equations form a link of infinitely
+many components~\cite{knottyode}, this system is not universal! For instance, the figure-eight knot cannot be found amongst the periodic orbits $\L$~\cite{knottyode}.
+
+\begin{align}
+  \label{eq:lorenz}
+  \dot{x} &= \sigma(y - x ) \\
+  \label{eq:lorenz2}
+  \dot{y} &= \beta x - y - x z \\
+  \label{eq:lorenz3}
+  \dot{z} &= - \beta z + x y
+\end{align}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{joining_splitting.png}
+  \caption[what goes here]{(a) joining and (b) splitting charts, reproduced from~\cite{knottyode}\protect\footnotemark}\label{fig:joinsplit}
+\end{figure}
+
+
+\footnotetext{Without permission}
+
+
+
+
+The primary formal advantage of working with templates, is that they allow the use of \emph{symbolic dynamics}. We can identify periodic orbits on a template $\tau$ with the sequence of strips crossed.
+
+\begin{definition}
+  Following~\cite{knottyode}, given a template $\tau$, we define
+  \begin{itemize}
+    \item Branch lines  $\set{l_j : j = 1, \cdots M}$, the one-dimensional lines strips are connected along
+    \item Strips $\set{x_i : i = 1, \cdots N \geq 2 M}$, the two-dimensional regions connecting branch lines
+    \item Itinerary $(x_{s_1}x_{s_2}x_{s_3} \dots)$, a sequence of strips crossed by an orbit on $\tau$
+    \item Itinerary space $\Sigma_\tau = \set{a_0 a_1 a_2 \cdots} \subset \set{x_1, x_2, \ldots, x_N}^{\Z^+}$, the set of all possible itineraries on $\tau$
+    \item The transition matrix $A_\tau$
+
+      \begin{equation}
+        A_\tau(i,j) = \left\{ \
+        \begin{smallmatrix}
+          0 \text{ if } \not\exists \text{ a strip from } x_i \text{ to } x_j \\
+          1 \text{ if } \exists \text{ a strip from } x_i \text{ to } x_j
+        \end{smallmatrix}
+        \right.
+      \end{equation}
+  \end{itemize}
+\end{definition}
+
+It's interesting to note that powers of $A_\tau$ capture allowable trajectories, or more precisely the $(i,j)$th element of the $k$th power of $A_\tau$ will be nonzero iff there is an admissable itinerary of length
+$k$ from $x_i$ to $x_j$.
+In particular, ${(A_\tau^k)}_{i,j}$ is the number of different length $k$ orbits linking $x_i$ and $x_j$
+So, in principle, we have succeeded in reducing questions about the periodic orbits of a flow to questions about the powers of a single matrix. Of course, in practice it will be very difficult to compute $A$ from an arbitrary
+dynamical system.
+
+$A_\tau$ does \emph{not} contain information about how the strips of a given template cross, meaning that it is not possible to write down the link of knots contained in a template $\tau$ if given only $A_\tau$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{lorenz.png}
+  \caption{The Lorenz template, $\L$, ~\cite{knottyode}. The dashed line indicates that the right subtemplate passes `under' the left subtemplate. It's worth noting that orbits may `fall off' of templates, as those orbits
+  that pass through the gap in the lower-middle of $\L$ would. However, these orbits would not be periodic so they are immaterial to us.}\label{fig:lorenz}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+ An interesting question that we consider
+in Section~\ref{sec:misc} is: what information should one keep track of in addition to $A_\tau$ to allow identification of the knot types of periodic orbits?
+
+See the Figure~\ref{fig:universal} for an example of a template with labeled strips.
+
+Ghrist confirms that the set of admissible sequences on $\Sigma_\tau$ corresponds exactly with the set of periodic orbits on $\tau$, as desired.
+
+
+\subsection{Ordering orbits on templates}
+
+It's possible, and will prove useful, to put an order on orbits on $\tau$ and is accomplished by choosing an ordering on strips emanating from the same branch line and using the induced lexicographic ordering to order orbits.
+
+This is best illustrated with an example borrowed from \cite{knottyode}. Let $\V$ be the template illustrated in Figure \ref{fig:universal}, outfitted with a Markov partition of strips $\set{x_1, x_2, x_3, x_4}$.
+Choose an ordering $\vartriangleright$ on the branch lines:
+
+\begin{align}
+  l_1 &: x_1 \vartriangleright x_2 \\
+  l_2 &: x_3 \vartriangleright x_4
+\end{align}
+
+Then, a lexicographic ordering on $\Sigma_\V$ gives an ordering of orbits. For example, $x_1^2 x_3 x_4 \cdots \vartriangleright x_1 x_2 x_3 x_4 \vartriangleright x_1 x_2 x_4 \cdots$.
+
+Though, we've skirted over the details of this ordering here, rest assured that it is well-defined for all templates as confirmed in \cite{Holmes1989}\cite{Holmes1985}\cite{knottyode}
+
+
+\subsection{Template inflation}
+
+Our main tool in proving the existence of a universal template (and by extension a universal ODE) will be \emph{template inflation}. The following definition are \cite{knottyode}.
+
+
+
+
+
+\begin{definition}[Subtemplate]
+
+  A \emph{subtemplate} $S \subset \tau$ of a template $\tau$ is a topological subset of $\tau$ which, with the restriction of the semiflow of $\tau$, satisfies the definition of a template (\ref{def:template})
+\end{definition}
+
+
+\begin{definition}[Template inflation]
+
+  A  \emph{template inflation} of a template $\tau$ into a template $\rho$ is a map $\bm{R} : \tau \to \rho$ taking orbits to orbits which is a diffeomorphism onto its image.
+  The image of a template inflation is, by definition, a subtemplate.
+\end{definition}
+
+
+\begin{definition}[Template renormalization]
+
+  In the important case where an inflation $\bm{R}$ maps $\tau \to \tau$ we say that $\bm{R}$ is a \emph{template renormalization} as $\bm{R}(\tau) \subset \tau$ is a subtemplate of $\tau$ which
+  is diffeomorphic to $\tau$.
+\end{definition}
+
+
+See Figure \ref{fig:lorenz_subtemplate} for an illustration of how a template renormalization might be constructed.
+
+
+Now, note this, \textbf{if a template $\tau$ admits an inflation, then the image of that inflation (being diffeormophic to the original template) can again be inflated, giving an increasingly complicated sequenced of embedded subtemplates each diffeormorphic to the original}. This is the essential property that makes inflations such a powerful tool in proving the existence of a universal ODE, a bit later
+we'll see exactly how its usefulness is manifested.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{lorenz_subtemplate.png}
+  \caption{A subtemplate of the Lorenz template $\L$. When it is cut along the boundary and removed from $\L$, it forms a template diffeomorphic to the original one!
+    Bold lines indicate the boundary of the $\L$ whereas the lighter lines indicate the boundary of the subtemplate, but can also be thought of as orbits in $\L$.
+    Lines are dashed where one subtemplate passes behind another. The crossings in the template boundaries on the lower figure
+    are intended to indicate twists in the strip.
+    Figure \cite{knottyode}}\label{fig:lorenz_subtemplate}
+\end{figure}
+\\
+
+A \emph{very} useful lemma proved in \cite{knottyode} follows
+
+
+\begin{lemma}[Ghrist \& Holmes 1993]
+  If templates $\tau$ and $\rho$ have $M$ and $N$ strips, respectively, a template inflation $\bm{R}: \tau \to \rho$ induces a map $\bm{R}: \Sigma_\tau \to \Sigma_\rho$ whose action is to inflate each element of the Markov partition of strips $\set{x_i : i = 1\cdots M}$ of the template $\tau$ to a finite
+  admissible word $\set{\bm_{w_i}: i = 1 \dots N}$ in the generators of $\Sigma_\rho$.  $\set{\bm{w_i} = x_{i_1} x_{i_2} \cdots x_{i_k} : i = 1 \cdots N, x_{i_j} \in \set{x_i}}$\label{lemma:symbolic}
+\end{lemma}
+
+
+
+For example the inflation $\bm{L} : \L \to \L$ shown in Figure~\ref{fig:lorenz_subtemplate} (with $x_1$ (resp. $x_2$) set as the left (right) strip) has the following action on itineraries in $\L$:
+
+\begin{equation}
+\bm{L} : \L \to \L  \begin{cases} x_1 \mapsto x_1 \\ x_2 \mapsto x_1 x_2 \end{cases}
+\end{equation}
+
+Consider the Lorenz template $\L$ with the inflation $\tilde{\L} \subset \L$ as identified in Figure~\ref{fig:lorenz_subtemplate}.
+Label the left and right strips of $\L$ as $x_1$ and $x_2$ respectively, and the left and right strips of $\tilde{\L}$ as $\tilde{x_1}$ and $\tilde{x_2}$.
+Even though $\tilde{\L} \subset \L$, $\tilde{\L} \cong \L$! To understand why Lemma~\ref{lemma:symbolic} holds, consider how the $\tilde{x_i}$ are contained in $x_i$. $\tilde{x_1} \subset x_1$ so one can easily see that
+orbits in $\L$ passing through $x_1$ will pass through $\tilde{x_1}$ under the inflation that takes $\L$ to $\tilde{\L}$. On the other hand, $\tilde{x_2} \subset x_1 \cup x_2$; orbits in $\tilde{\L}$ passing through
+$\tilde{x_2}$ will first pass through $x_1$ and then $x_2$ when pulled back along the inflation. This actually serves to prove the lemma if rewritten generally.
+
+As a quick recap, we've established that renormalizing a template $\tau$ induces a map on the itineraries $\Sigma_\tau$ of $\tau$ that preserves the \emph{dynamics} of $\tau$. However we have \emph{not} yet established
+that the renormalization (and by extension the induced map on itineraries)  preserves the knot type of orbits. We now identify a special class of inflations that preserve knot type, as these are the inflations that we're really after.
+
+\begin{definition}
+  An \emph{isotopic inflation} of embedded templates $\tau$ and $\rho$ is a template inflation $\bm{R}: \tau \to \rho$ such that $\bm{R}(\tau)$ is isotopic to $\rho$ (in the ambient space)
+\end{definition}
+
+
+\end{document}

@@ -1,0 +1,94 @@
+\documentclass[11pt]{article}
+
+ \usepackage{subfiles}
+ \usepackage{amsmath}
+ \usepackage{amsxtra}
+ \usepackage{amsfonts}
+ \usepackage{amssymb}
+ \usepackage{amsthm}
+ \usepackage{graphicx}
+ \usepackage{mathtools}
+ \usepackage{dsfont}
+ \usepackage{hyperref}
+ \usepackage{bm}
+ \usepackage{color}
+
+ \graphicspath{ {figures/}}
+
+ \usepackage[margin=3cm]{geometry}
+ \newcommand{\eps}{\varepsilon}
+ \newcommand{\Z}{\mathbb{Z}}
+ \newcommand{\N}{\mathbb{N}}
+ \newcommand{\R}{\mathbb{R}}
+ \newcommand{\Q}{\mathbb{Q}}
+ \newcommand{\W}{\mathcal{W}}
+ \newcommand{\U}{\mathcal{U}}
+ \newcommand{\V}{\mathcal{V}}
+ \newcommand{\C}{\mathbb{C}}
+ \newcommand{\K}{\mathcal{K}}
+ \renewcommand{\L}{\mathcal{L}}
+
+ \newcommand{\set}[1]{\{ #1 \}}
+ \newcommand{\gen}[1]{\left\langle #1 \right\rangle}
+ \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+ \newcommand{\abs}[1]{\left| #1 \right|}
+ \renewcommand{\phi}{\varphi}
+ \renewcommand{\Re}{\operatorname{Re}}
+ \renewcommand{\Im}{\operatorname{Im}}
+ \newcommand{\conj}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+ \newcommand{\defeq}{\vcentcolon=}
+ \newcommand{\identity}{\mathds{1}}
+
+ \DeclareMathOperator{\im}{im}
+ \DeclareMathOperator{\res}{Res}
+ \DeclareMathOperator{\Arg}{Arg}
+ \DeclareMathOperator{\parg}{arg}
+ \DeclareMathOperator{\Log}{Log}
+
+ \theoremstyle{plain}
+ \newtheorem{thm}{Theorem}
+
+ \theoremstyle{definition}
+ \newtheorem{recall}{Recall}
+ \newtheorem{remark}{Remark}
+ \newtheorem{definition}{Definition}
+ \newtheorem{prop}{Proposition}
+ \newtheorem{cor}{Corollary}
+ \newtheorem{lemma}{Lemma}
+ \newtheorem{ex}{Example}
+ \newtheorem{claim}{Claim}
+ \newtheorem{exercise}{Exercise}
+ \newtheorem{notation}{Notation}
+ \newtheorem{question}{Question}
+
+\definecolor{reddish}{rgb}{0.6,0.1,0}
+\newcommand{\acom}[1]{\textcolor{reddish}{[andrew: #1]}}
+
+
+ \title{\Huge \textbf{Knoted Dynamics: Unraveling the Interplay of Dynamical Systems and Knot Theory}}
+
+ \author{Riddhiman Bhattacharya }
+
+ \date{April 18, 2023}
+
+
+\begin{document}
+
+\maketitle
+\clearpage
+\tableofcontents
+\clearpage
+
+\subfile{intro.tex}
+
+\subfile{body.tex}
+
+\subfile{conclusion.tex}
+
+\bibliographystyle{unsrt}
+
+
+\bibliography{biblio.bib}
+
+
+\end{document}

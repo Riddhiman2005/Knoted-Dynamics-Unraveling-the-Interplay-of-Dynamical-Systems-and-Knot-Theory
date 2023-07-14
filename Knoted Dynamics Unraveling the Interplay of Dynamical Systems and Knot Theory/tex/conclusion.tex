@@ -1,0 +1,43 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+
+
+
+
+\section{Implications for ODEs in general}
+
+Very brief exposition on section 5 in a knotty ode discussing what the universality of $\V$ implies in general. Proving universality is reduced to showing that a template can be renormalized to $\V$.
+
+
+\section{Miscellaneous discussions and interesting open questions}
+\label{sec:misc}
+
+\begin{enumerate} 
+       \item  The last theorem of Section 2.4 hints at a requirement for two templates to be considered equal: given templates $A$ and $B$, $A$ and $B$ are equal if $A \subset B$ and $B \subset A$. If each template may be contained within the other, then all knots in $A$ must be contained in $B$ as well, and all knots in $B$ must be contained in $A$ as well.
+
+
+   \item We can also touch upon $A_\tau$, from section 1.1. What information does $A_\tau$ give us, and if we miss information, how can we include that forgotten information in other methods? 
+
+       $A_\tau$ just gives us which strands lead to which strands, so it's possible to form a skeleton of the template from this adjacency matrix by leading each strand to its next destination. Every strand must end at a branch line, so we know that if there are multiple strands $x_i$ from a strand $x_j$ as encoded by $A_\tau$, there must be a split from $x_j$ to all $x_i$. 
+
+       However, we do miss a few crucial details. When we encounter a scenario in which two strands join at a branch line, $A_\tau$ fails to show which strand is over the other. We can remedy this by keeping a list where each branch is represented by one element, which is actually a list of strands from over-strands to under-strands. For example, in the $\V$ template (\ref{fig:universal}), we would have a list of two elements, one for each branch line, and the list would look like $[[x_1, x_4], [x_2, x_3]]$, as for the top branch line, the $x_1$ branch is over the $x_4$ branch and for the bottom branch line, the $x_2$ branch is over the $x_3$ branch. 
+
+       We also fail to identify when a single strand twists. For example, in Figure~\ref{fig:lorenz_subtemplate}, the adjacency matrix representing the subtemplate removed from $\mathcal{L}$ would be equivalent to the adjacency matrix representing the Lorenz template. This can be solved by keeping a list of length equal to the number of strands, where each element is an integer equal to how many times the strand twists counterclockwise minus the number of times the strand twists clockwise. This ensures that a strand that twists counterclockwise has a positive value, a strand that twists clockwise has a negative value, and a strand that does not twist at all simply has value $0$. It is, after all, irrelevant where on the strand the twist lies; it can lie immediately after the strand splits from the branch line, or just before the strand joins with another strand. 
+
+       We considered the question, "Given a knot $K$, provide all necessary information as described above to give a template that contains that knot, and give an ordering of strands that generates that knot." We concluded the first half of this question to be mostly trivial, as it is possible to simply give the adjacency matrix (and all relevant information) that encodes a universal template like $\V$, or even to take the neighborhood of that knot and flatten it in one direction. This second option would give us a template that we can follow to easily construct the knot in question, and even renders giving an ordering of strands to generate the knot in this template trivial. 
+
+       Then, it makes sense to ask, "Given $A_\tau$ and all necessary numerical information to encode the template and given a knot $K$, does this knot exist on the template described?" This seems rather hard, and will not be covered. 
+
+
+   \item Although the Lorenz system is not universal, many Lorenz-like systems are, in fact, universal. Consider the specific subtemplate of the Lorenz template, cut along the boundary and removed from $\L$, from Figure~\ref{fig:lorenz_subtemplate}. The right branch of this subtemplate twists counterclockwise twice; it can be idenfified as $\L(0, 2)$. In 1996, Ghrist proved that all Lorenz-like templates $\L(0, n)$ for $n < 0$ are universal; this proof utilizes the property that $\L(0, n) \subset \L(0, n-2)$ for all $n$, $\L(0, -4) \subset \L(0, -1)$, and $U_0 \subset \L(0, -2)$ ($U_0 = U$ is a universal template as well)~\cite{Ghrist1996}. 
+
+
+       \end{enumerate}
+           
+
+
+
+
+
+\end{document}
